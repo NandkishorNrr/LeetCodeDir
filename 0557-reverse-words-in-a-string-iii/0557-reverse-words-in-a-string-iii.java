@@ -1,19 +1,20 @@
 class Solution {
     public String reverseWords(String s) {
-        char[] sA = s.toCharArray();
-        s = "";
+        StringBuilder ns = new StringBuilder();
         StringBuilder word = new StringBuilder();
 
-        for(char ch: sA){
+        for(int i = 0; i < s.length(); i++){
+            char ch = s.charAt(i);
             if(ch == ' '){
                 word.reverse();
-                s = s + word.toString() + " ";
+                ns.append(word).append(" ");
                 word.setLength(0);
                 continue;
             }
             word.append(ch);
         }
-        s += word.reverse().toString();
-        return s;
+        word.reverse();
+        ns.append(word);
+        return ns.toString();
     }
 }
