@@ -1,20 +1,18 @@
 class Solution {
     public int countConsistentStrings(String allowed, String[] words) {
-        boolean flag;
-        int count = 0;
-        for(String w: words){
-            flag = false;
-            for(char c: w.toCharArray()){
-                if(allowed.contains(String.valueOf(c)))
-                    flag = true;
-                else{
-                    flag = false;
-                    break;
-                }
+        HashMap<Character, Integer> mp = new HashMap();
+    int count = words.length;
+    for(int i = 0; i < allowed.length(); i++){
+        mp.put(allowed.charAt(i), 1);
+    }
+    for(int i = 0; i < words.length; i++){
+        for(int j = 0; j < words[i].length(); j++){
+            if(mp.get(words[i].charAt(j)) == null){
+                count--;
+                break;
             }
-            if(flag)
-                count++;
         }
-        return count;
+    }
+    return count; 
     }
 }
